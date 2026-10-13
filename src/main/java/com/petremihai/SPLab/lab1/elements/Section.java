@@ -1,39 +1,31 @@
 package com.petremihai.SPLab.lab1.elements;
 
 import com.petremihai.SPLab.lab1.Element;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Section implements Element{
+public class Section implements Element {
     private String title;
-    private List<Element> elements;
+    private List<Element> children = new ArrayList<>();
 
-    public Section(String title){
+    public Section(String title) {
         this.title = title;
-        this.elements = new ArrayList<>();
     }
 
     @Override
-    public void print(){
-        System.out.println("Section Title: " + this.title);
-        for(Element element : this.elements){
-            element.print();
+    public void print() {
+        System.out.println(title);
+        for (Element e : children) {
+            e.print();
         }
     }
 
     @Override
-    public void addElement(Element element){
-        this.elements.add(element);
-    }
+    public void add(Element e) { children.add(e); }
 
     @Override
-    public void removeElement(Element element){
-        this.elements.remove(element);
-    }
+    public void remove(Element e) { children.remove(e); }
 
     @Override
-    public Element getElement(int index){
-        return this.elements.get(index);
-    }
+    public Element get(int index) { return children.get(index); }
 }
