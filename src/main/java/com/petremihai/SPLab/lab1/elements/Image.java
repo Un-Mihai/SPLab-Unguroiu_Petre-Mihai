@@ -1,30 +1,26 @@
 package com.petremihai.SPLab.lab1.elements;
 
 import com.petremihai.SPLab.lab1.Element;
+import java.util.concurrent.TimeUnit;
 
-import java.util.List;
+public class Image implements Element {
+    private String url;
 
-public class Image implements Element{
-    private String title;
-    private String alt;
-    private String path;
-
-    public Image(String title){
-        this.title = title;
+    public Image(String url) {
+        this.url = url;
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void print(){
-        System.out.println("Image Title: " + this.title);
-        System.out.println("Alt: " + this.alt);
+    public void print() {
+        System.out.println("Image with name: " + url);
     }
 
-    @Override
-    public void addElement(Element element){}
-
-    @Override
-    public void removeElement(Element element){}
-
-    @Override
-    public Element getElement(int index){ return null; }
+    @Override public void add(Element e) {}
+    @Override public void remove(Element e) {}
+    @Override public Element get(int index) { return null; }
 }

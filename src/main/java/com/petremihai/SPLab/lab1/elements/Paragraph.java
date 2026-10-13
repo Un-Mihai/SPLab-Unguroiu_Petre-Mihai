@@ -2,38 +2,28 @@ package com.petremihai.SPLab.lab1.elements;
 
 import com.petremihai.SPLab.lab1.Element;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Paragraph implements Element{
+public class Paragraph implements Element {
     private String text;
-    private List<Element> elements;
+    private AlignStrategy textAlignment;
 
-    public Paragraph(String text){
+    public Paragraph(String text) {
         this.text = text;
-        this.elements = new ArrayList<>();
+    }
+
+    public void setAlignStrategy(AlignStrategy strategy) {
+        this.textAlignment = strategy;
     }
 
     @Override
-    public void print(){
-        System.out.println(this.text);
-        for(Element element : this.elements){
-            element.print();
+    public void print() {
+        if (textAlignment != null) {
+            textAlignment.render(text);
+        } else {
+            System.out.println("Paragraph: " + text);
         }
     }
 
-    @Override
-    public void addElement(Element element){
-        this.elements.add(element);
-    }
-
-    @Override
-    public void removeElement(Element element){
-        this.elements.remove(element);
-    }
-
-    @Override
-    public Element getElement(int index){
-        return this.elements.get(index);
-    }
+    @Override public void add(Element e) {}
+    @Override public void remove(Element e) {}
+    @Override public Element get(int index) { return null; }
 }

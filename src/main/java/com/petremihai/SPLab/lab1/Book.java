@@ -1,36 +1,30 @@
 package com.petremihai.SPLab.lab1;
 
+import com.petremihai.SPLab.lab1.elements.Section;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Book implements Element {
     private String title;
-    private List<Author> authors;
-    private List<Element> elements;
+    private List<Element> contents = new ArrayList<>();
 
-    public Book(String title){
+    public Book(String title) {
         this.title = title;
-        this.authors = new ArrayList<>();
-        this.elements = new ArrayList<>();
     }
 
-    public void addAuthor(Author author){
-        this.authors.add(author);
+    public void addContent(Element e) {
+        contents.add(e);
     }
 
-    public void addElement(Element element){
-        this.elements.add(element);
-    }
-
-    public void print(){
-        System.out.println("Title: " + this.title);
-        System.out.println("Authors: ");
-        for(Author author : this.authors){
-            author.print();
-        }
-        System.out.println("Elements: ");
-        for(Element element : this.elements){
-            element.print();
+    @Override
+    public void print() {
+        System.out.println("Book: " + title);
+        for (Element e : contents) {
+            e.print();
         }
     }
+
+    @Override public void add(Element e) { addContent(e); }
+    @Override public void remove(Element e) { contents.remove(e); }
+    @Override public Element get(int index) { return contents.get(index); }
 }
