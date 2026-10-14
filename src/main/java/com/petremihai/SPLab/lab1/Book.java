@@ -24,6 +24,14 @@ public class Book implements Element {
         }
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+        for (Element e : contents) {
+            e.accept(visitor);
+        }
+    }
+
     @Override public void add(Element e) { addContent(e); }
     @Override public void remove(Element e) { contents.remove(e); }
     @Override public Element get(int index) { return contents.get(index); }

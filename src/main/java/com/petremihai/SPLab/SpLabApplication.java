@@ -1,12 +1,13 @@
 package com.petremihai.SPLab;
 
 import com.petremihai.SPLab.lab1.Book;
+import com.petremihai.SPLab.lab1.BookStatistics;
+import com.petremihai.SPLab.lab1.Visitor;
 import com.petremihai.SPLab.lab1.elements.*;
 
 public class SpLabApplication {
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("=== TESTARE PROXY PATTERN ===");
 		long startTime = System.currentTimeMillis();
 
 		ImageProxy img1 = new ImageProxy("Pamela Anderson");
@@ -24,20 +25,6 @@ public class SpLabApplication {
 		playboy.addContent(playboyS1);
 		playboy.addContent(playboyS2);
 
-		long endTime = System.currentTimeMillis();
-		System.out.println("Creation of the content took " + (endTime - startTime) + " milliseconds");
-
-		startTime = System.currentTimeMillis();
-		playboyS1.print();
-		endTime = System.currentTimeMillis();
-		System.out.println("Printing of the section 1 took " + (endTime - startTime) + " milliseconds");
-
-		startTime = System.currentTimeMillis();
-		playboyS1.print();
-		endTime = System.currentTimeMillis();
-		System.out.println("Printing again the section 1 took " + (endTime - startTime) + " milliseconds");
-
-		System.out.println("\n=== TESTARE STRATEGY PATTERN ===");
 		Section cap1 = new Section("Capitolul 1");
 		Paragraph p1 = new Paragraph("Paragraph 1");
 		cap1.add(p1);
@@ -47,6 +34,7 @@ public class SpLabApplication {
 		cap1.add(p3);
 		Paragraph p4 = new Paragraph("Paragraph 4");
 		cap1.add(p4);
+		playboy.addContent(cap1);
 
 		System.out.println("Printing without Alignment");
 		System.out.println();
@@ -60,5 +48,9 @@ public class SpLabApplication {
 		System.out.println("Printing with Alignment");
 		System.out.println();
 		cap1.print();
+
+		BookStatistics visitor = new BookStatistics();
+		playboy.accept(visitor);
+		visitor.printStatistics();
 	}
 }
