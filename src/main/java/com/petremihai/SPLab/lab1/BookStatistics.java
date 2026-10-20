@@ -49,4 +49,9 @@ public class BookStatistics implements Visitor{
         this.statistics.put(imageProxy.getClass().getSimpleName(), this.statistics.getOrDefault(imageProxy.getClass().getSimpleName(), 0) + 1);
     }
 
+    @Override
+    public void visit(TableOfContents tableOfContents) {
+        this.statistics.put(tableOfContents.getClass().getSimpleName(), this.statistics.getOrDefault(tableOfContents.getClass().getSimpleName(), 0) + 1);
+    }
+
 }
