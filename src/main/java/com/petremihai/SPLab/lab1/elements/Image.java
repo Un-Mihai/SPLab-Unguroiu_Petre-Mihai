@@ -1,6 +1,8 @@
 package com.petremihai.SPLab.lab1.elements;
 
 import com.petremihai.SPLab.lab1.Element;
+import com.petremihai.SPLab.lab1.Visitor;
+
 import java.util.concurrent.TimeUnit;
 
 public class Image implements Element {
@@ -23,4 +25,9 @@ public class Image implements Element {
     @Override public void add(Element e) {}
     @Override public void remove(Element e) {}
     @Override public Element get(int index) { return null; }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 }
