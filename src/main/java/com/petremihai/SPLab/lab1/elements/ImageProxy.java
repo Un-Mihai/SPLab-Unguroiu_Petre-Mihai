@@ -2,13 +2,22 @@ package com.petremihai.SPLab.lab1.elements;
 
 import com.petremihai.SPLab.lab1.Element;
 import com.petremihai.SPLab.lab1.Visitor;
+import jakarta.persistence.*;
 
-public class ImageProxy implements Element {
+@Entity
+public class ImageProxy extends BaseElement {
     private String url;
+    @Transient
     private Image realImg;
+
+    protected ImageProxy() {}
 
     public ImageProxy(String url) {
         this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     private Image loadImage() {

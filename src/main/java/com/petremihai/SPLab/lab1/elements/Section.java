@@ -2,13 +2,18 @@ package com.petremihai.SPLab.lab1.elements;
 
 import com.petremihai.SPLab.lab1.Element;
 import com.petremihai.SPLab.lab1.Visitor;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Section implements Element {
+@Entity
+public class Section extends BaseElement {
     private String title;
+    @OneToMany(targetEntity = BaseElement.class, cascade = CascadeType.ALL)
     private List<Element> children = new ArrayList<>();
+
+    protected Section() {}
 
     public Section(String title) {
         this.title = title;
@@ -16,6 +21,10 @@ public class Section implements Element {
 
     public String getTitle() {
         return title;
+    }
+
+    public List<Element> getChildren() {
+        return children;
     }
 
     @Override
