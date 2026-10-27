@@ -2,11 +2,15 @@ package com.petremihai.SPLab.lab1.elements;
 
 import com.petremihai.SPLab.lab1.Element;
 import com.petremihai.SPLab.lab1.Visitor;
+import jakarta.persistence.*;
 
 import java.util.concurrent.TimeUnit;
 
-public class Image implements Element {
+@Entity
+public class Image extends BaseElement {
     private String url;
+
+    protected Image() {}
 
     public Image(String url) {
         this.url = url;
@@ -15,6 +19,10 @@ public class Image implements Element {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     @Override

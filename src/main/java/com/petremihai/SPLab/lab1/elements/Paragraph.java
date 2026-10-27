@@ -2,13 +2,22 @@ package com.petremihai.SPLab.lab1.elements;
 
 import com.petremihai.SPLab.lab1.Element;
 import com.petremihai.SPLab.lab1.Visitor;
+import jakarta.persistence.*;
 
-public class Paragraph implements Element {
+@Entity
+public class Paragraph extends BaseElement {
     private String text;
+    @Transient
     private AlignStrategy textAlignment;
+
+    protected Paragraph() {}
 
     public Paragraph(String text) {
         this.text = text;
+    }
+
+    public String getText() {
+        return text;
     }
 
     public void setAlignStrategy(AlignStrategy strategy) {
