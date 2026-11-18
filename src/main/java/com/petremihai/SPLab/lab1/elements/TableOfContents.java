@@ -16,7 +16,7 @@ public class TableOfContents implements Element {
         entries.add(title + " .................... " + pageNumber);
     }
 
-    public void print() {
+    public void render() {
         System.out.println("Table of Contents");
         for (String entry : entries) {
             System.out.println(entry);

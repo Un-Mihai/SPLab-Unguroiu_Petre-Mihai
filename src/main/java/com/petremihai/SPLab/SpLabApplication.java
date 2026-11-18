@@ -5,7 +5,9 @@ import com.petremihai.SPLab.difexample.SingletonComponent;
 import com.petremihai.SPLab.difexample.TransientComponent;
 import com.petremihai.SPLab.lab1.elements.*;
 import com.petremihai.SPLab.lab1.Book;
+import com.petremihai.SPLab.lab1.BookStatistics;
 import com.petremihai.SPLab.lab1.GenerateToC;
+import com.petremihai.SPLab.lab1.RenderContentVisitor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -48,6 +50,7 @@ public class SpLabApplication {
 		cap2.add(new Paragraph("Acesta este primul paragraf din capitolul 2."));
 		cap2.add(new Image("Image1"));
 		cap3.add(new Paragraph("Acesta este un paragraf de concluzie."));
+		cap3.add(new Table("Table 1"));
 
 		myBook.addContent(cap1);
 		myBook.addContent(cap2);
@@ -59,6 +62,12 @@ public class SpLabApplication {
 
 		TableOfContents toc = generateToC.getToC();
 
-		toc.print();
+		toc.render();
+
+		myBook.accept(new RenderContentVisitor());
+
+		BookStatistics stats = new BookStatistics();
+		myBook.accept(stats);
+		stats.printStatistics();
 	}
 }

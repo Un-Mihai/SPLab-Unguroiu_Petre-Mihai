@@ -1,6 +1,7 @@
 package com.petremihai.SPLab.controllers;
 
 import com.petremihai.SPLab.lab1.Book;
+import com.petremihai.SPLab.observer.AllBooksSubject;
 import com.petremihai.SPLab.persistence.CrudRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +12,11 @@ import java.util.List;
 @RequestMapping("/books")
 public class BooksController {
     private final CrudRepository<Book, Integer> booksRepository;
+    private final AllBooksSubject allBooksSubject;
 
-    public BooksController(CrudRepository<Book, Integer> booksRepository) {
+    public BooksController(CrudRepository<Book, Integer> booksRepository, AllBooksSubject allBooksSubject) {
         this.booksRepository = booksRepository;
+        this.allBooksSubject = allBooksSubject;
     }
 
     @GetMapping
@@ -27,8 +30,10 @@ public class BooksController {
     }
 
     @PostMapping
-    public Integer create(@RequestBody Book book) {
-        return booksRepository.save(book).getId();
+    public String create(@RequestBody Book book) {
+        book = booksRepository.save(book);
+        allBooksSubject.add(book);
+        return "Book saved [" + book.getId() + "] " + book.getTitle();
     }
 
     @PutMapping("/{id}")

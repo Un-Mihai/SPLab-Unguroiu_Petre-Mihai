@@ -28,8 +28,8 @@ public class ImageProxy extends BaseElement {
     }
 
     @Override
-    public void print() {
-        loadImage().print();
+    public void render() {
+        loadImage().render();
     }
 
     @Override public void add(Element e) {}
