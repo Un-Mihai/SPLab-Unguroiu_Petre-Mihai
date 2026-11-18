@@ -28,11 +28,8 @@ public class Section extends BaseElement {
     }
 
     @Override
-    public void print() {
+    public void render() {
         System.out.println(title);
-        for (Element e : children) {
-            e.print();
-        }
     }
 
     @Override

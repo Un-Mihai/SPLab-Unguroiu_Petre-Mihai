@@ -39,11 +39,8 @@ public class Book implements Element {
     }
 
     @Override
-    public void print() {
+    public void render() {
         System.out.println("Book: " + title);
-        for (Element e : contents) {
-            e.print();
-        }
     }
 
     @Override

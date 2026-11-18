@@ -25,7 +25,7 @@ public class Paragraph extends BaseElement {
     }
 
     @Override
-    public void print() {
+    public void render() {
         if (textAlignment != null) {
             textAlignment.render(text);
         } else {
